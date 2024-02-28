@@ -1,46 +1,70 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rocket League Community</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Verknüpfung zu deiner CSS-Datei -->
-</head>
-<body>
-    <header>
-        <h1>Rocket League Community</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Startseite</a></li>
-                <li><a href="game_info.html">Spielinformation</a></li>
-                <li><a href="gameplay.html">Gameplay</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="hero">
-        <h2>Willkommen bei unserer Rocket League Community!</h2>
-        <p>Hier findest du alles, was du über Rocket League wissen musst.</p>
-        <a href="game_info.html" class="btn">Mehr erfahren</a>
-    </section>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nothing</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to Nothing</h1>
+            <nav>
+                
+            </nav>
+        </header>
 
-    <section class="features">
-        <div class="feature">
-            <h3>Community-Events</h3>
-            <p>Wir organisieren regelmäßig Turniere, Treffen und andere Events für unsere Mitglieder.</p>
+        <div id="cartbild" onclick="showCart()">
+            <img src="Bilder/ShopingCart.jpeg" alt="" width="30" height="30">
         </div>
-        <div class="feature">
-            <h3>Tipps und Tricks</h3>
-            <p>Entdecke nützliche Tipps und Strategien, um dein Spiel zu verbessern und der Konkurrenz voraus zu sein.</p>
-        </div>
-        <div class="feature">
-            <h3>Foren und Diskussionen</h3>
-            <p>Tausche dich mit anderen Spielern aus, stelle Fragen und teile deine Erfahrungen in unseren Foren.</p>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Rocket League Community. Alle Rechte vorbehalten.</p>
-    </footer>
-</body>
+        <div id="cart" onclick="showCart()">0</div>
+        <p>You can buy literally Nothing</P>
+            <section>
+                <div class="product">
+                    <img src="Bilder/Nothing.jpeg" alt="Product 1">
+                    <h2>Nothing</h2>
+                    <p>A Phone that literally does Nothing</p>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Nothing', 19.99)" onmouseover="this.style.cursor='pointer'">
+                        Add to Cart
+                    </button>
+                </div>
+                <div class="product">
+                    <img src="Bilder/Iphone.jpeg" alt="Product 2">
+                    <h2>Iphone</h2>
+                    <p>An I handy</p>
+                    <p>$24.99</p>
+                    <button onclick="addToCart('Iphone', 24.99)" onmouseover="this.style.cursor='pointer'">
+                        Add to Cart
+                    </button>
+                </div>
+            </section>
+            <script>
+                var cartCount = 0;
+                function addToCart(itemName, itemPrice) {
+                    cartCount++;
+                    updateCartCount();
+                    var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                    var existingItem = cartItems.find(item => item.name === itemName);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cartItems.push({ name: itemName, price: itemPrice, quantity: 1 });
+                    }
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                }
+                function updateCartCount() {
+                    document.getElementById('cart').innerText = 'Cart (' + cartCount + ')';
+                }
+                function showCart() {
+                    window.location.href = 'cart.html';
+                }
+                function navigateTo(page) {
+            if (page === 'game') {
+                alert('Navigating to the Game page.');
+            }
+            
+        }
+            </script>
+    </body>
 </html>
